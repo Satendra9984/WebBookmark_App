@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation_file"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.navigationbookmark.MainNavigationFragments.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/mainFragment_to_saveFragment"
+            app:destination="@id/saveFragment"
+            app:popUpTo="@id/mainFragment" />
+        <action
+            android:id="@+id/mainFragment_to_updateFragment"
+            app:destination="@id/updateFragment"
+            app:popUpTo="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/saveFragment"
+        android:name="com.example.navigationbookmark.MainNavigationFragments.SaveFragment"
+        android:label="fragment_save"
+        tools:layout="@layout/fragment_save">
+        <action
+            android:id="@+id/saveFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <deeplink
+            app:action="android.intent.action.DEFAULT"
+            app:mimeType="text/plain"
+            app:uri="www.example.com" />
+        <argument
+            android:name="urlFromWeb"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="https://www." />
+        <deepLink
+            android:id="@+id/deepLink2"
+            android:autoVerify="true"
+            app:action="ACTION_SEND"
+            app:mimeType="text/plain"
+            app:uri="https://www.bookmark.com/{urlFromWeb}" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.example.navigationbookmark.MainNavigationFragments.UpdateFragment"
+        android:label="fragment_update"
+        tools:layout="@layout/fragment_update">
+        <action
+            android:id="@+id/updateFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <argument
+            android:name="updateBookmark"
+            app:argType="com.example.navigationbookmark.Database.BookmarkEntity" />
+    </fragment>
+</navigation>

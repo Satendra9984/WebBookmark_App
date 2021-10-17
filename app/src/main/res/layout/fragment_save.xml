@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainNavigationFragments.SaveFragment">
+
+    <EditText
+        android:id="@+id/bookmark_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="16sp"
+        android:fontFamily="@font/roboto"
+        android:hint="@string/title"
+        android:text=""
+        android:textSize="18sp"
+        android:textStyle="bold">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/bookmark_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bookmark_title"
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="16sp"
+        android:layout_marginEnd="16sp"
+        android:layout_marginBottom="16sp"
+        android:hint="@string/https_google_com"
+        android:text="@string/https_www"
+        android:textSize="18sp"
+        android:textStyle="bold">
+
+    </EditText>
+
+    <ScrollView
+        android:id="@+id/des_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/savebtn"
+        android:layout_below="@+id/bookmark_url"
+        android:layout_margin="8dp">
+
+        <EditText
+            android:id="@+id/description_EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/savebtn_shape"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/add_account_password_notes_etc"
+            android:padding="8dp"
+            android:text=""
+            android:textSize="18sp"
+            android:theme="@style/ThemeEditTextLight">
+
+        </EditText>
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/savebtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16sp"
+        android:background="@drawable/savebtn_shape"
+        android:text="SAVE"
+        android:textSize="28sp">
+
+    </Button>
+
+
+</RelativeLayout>
