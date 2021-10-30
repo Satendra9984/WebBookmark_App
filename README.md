@@ -44,8 +44,8 @@ Platform independent.
 
 # Future scope
 1. Cloud Computing
-2. Web authomation
-3. Reomemdation system
+2. Web automation 
+3. Recommendation system
 4. Auto clustering
 
 # Future Upgrades
