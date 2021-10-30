@@ -48,6 +48,11 @@ Platform independent.
 3. Reomemdation system
 4. Auto clustering
 
+# Future Upgrades
+1. Security using webApps support
+2. Custom App Icons
+3. Folders to group similar websites together
+
 # Challenges we ran into
 1. Choosing a stack
 2. Updation
