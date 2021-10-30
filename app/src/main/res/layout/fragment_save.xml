@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,46 +10,60 @@
     <EditText
         android:id="@+id/bookmark_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48sp"
         android:layout_alignParentTop="true"
-        android:layout_margin="16sp"
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="16sp"
+        android:layout_marginEnd="16sp"
+        android:layout_marginBottom="8sp"
         android:fontFamily="@font/roboto"
         android:hint="@string/title"
+        android:minHeight="48dp"
         android:text=""
         android:textSize="18sp"
         android:textStyle="bold">
 
     </EditText>
 
-    <EditText
-        android:id="@+id/bookmark_url"
+    <ScrollView
+        android:id="@+id/bookmark_urlScrollSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bookmark_title"
-        android:layout_marginStart="16sp"
-        android:layout_marginTop="16sp"
-        android:layout_marginEnd="16sp"
-        android:layout_marginBottom="16sp"
-        android:hint="@string/https_google_com"
-        android:text="@string/https_www"
-        android:textSize="18sp"
-        android:textStyle="bold">
+        >
 
-    </EditText>
+        <EditText
+            android:id="@+id/bookmark_url"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:layout_marginStart="16sp"
+            android:layout_marginTop="8sp"
+            android:layout_marginEnd="16sp"
+            android:layout_marginBottom="8sp"
+            android:hint="@string/https_google_com"
+            android:text="@string/https_www"
+            android:textSize="18sp"
+            android:textStyle="bold">
+
+        </EditText>
+    </ScrollView>
+
 
     <ScrollView
         android:id="@+id/des_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/savebtn"
-        android:layout_below="@+id/bookmark_url"
-        android:layout_margin="8dp">
+        android:layout_above="@+id/savebtn_Card"
+        android:layout_below="@+id/bookmark_urlScrollSave"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp">
 
         <EditText
             android:id="@+id/description_EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/savebtn_shape"
             android:fontFamily="@font/roboto"
             android:hint="@string/add_account_password_notes_etc"
             android:padding="8dp"
@@ -59,18 +74,31 @@
         </EditText>
     </ScrollView>
 
-
-    <Button
-        android:id="@+id/savebtn"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/savebtn_Card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_margin="16sp"
-        android:background="@drawable/savebtn_shape"
-        android:text="SAVE"
-        android:textSize="28sp">
+        android:layout_marginTop="20sp"
+        android:layout_alignParentBottom="true"
+        app:cardElevation="6sp"
+        app:cardCornerRadius="20dp">
+        <Button
+            android:id="@+id/savebtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2.6sp"
+            android:layout_marginBottom="6sp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/savebtn_shape"
+            android:padding="8sp"
+            android:text="SAVE"
+            android:textSize="28sp"
+            app:backgroundTint="@color/orange">
 
-    </Button>
+        </Button>
+    </androidx.cardview.widget.CardView>
+
 
 
 </RelativeLayout>

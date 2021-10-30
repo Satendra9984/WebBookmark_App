@@ -16,4 +16,13 @@
         <!-- hint text color -->
         <item name="android:textColorHint">#BDBDBD</item>
     </style>
+    <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="@style/TextAppearance.AppCompat">
+
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/orange</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textColorPrimary">#d2691e</item>
+
+    </style>
 </resources>

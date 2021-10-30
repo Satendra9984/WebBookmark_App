@@ -20,7 +20,7 @@ data class BookmarkEntity(
     @ColumnInfo(name = "DESCRIPTION")
     var description:String = ""
 
-): Parcelable {
+):Parcelable {
     @PrimaryKey(autoGenerate = true)
     var id : Int = 0
 }

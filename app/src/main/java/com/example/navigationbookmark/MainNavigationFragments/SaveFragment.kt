@@ -27,7 +27,7 @@ import com.example.navigationbookmark.ViewModel.MainActivity
  */
 class SaveFragment : Fragment() {
 
-    private val args by navArgs<SaveFragmentArgs>()
+//    private val args by navArgs<SaveFragmentArgs>()
 
     private lateinit var titleEdit:EditText
     private lateinit var urlEdit: EditText
@@ -53,6 +53,9 @@ class SaveFragment : Fragment() {
         // Using that text in our view
         if (message != null) {
                 urlEdit.setText(message)
+                var pre = message.removePrefix("https://www.")
+                pre = pre.removeSuffix(".com/")
+                titleEdit.setText(pre)
         }
 
         // Handling the save button
@@ -64,12 +67,12 @@ class SaveFragment : Fragment() {
             if(title.isNotEmpty() && url.isNotEmpty())
             {
                 viewModel.insert(BookmarkEntity(title,url,des))
-                view.findNavController().navigate(R.id.saveFragment_to_mainFragment)
             }
             else
             {
                 Toast.makeText(requireContext(), "Fields Are Empty", Toast.LENGTH_SHORT).show()
             }
+            view.findNavController().navigate(R.id.saveFragment_to_mainFragment)
 
         }
 

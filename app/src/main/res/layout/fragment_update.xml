@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     tools:context=".MainNavigationFragments.UpdateFragment">
 
@@ -20,65 +21,97 @@
 
     </EditText>
 
-    <EditText
-        android:id="@+id/bookmark_url"
+    <ScrollView
+        android:id="@+id/bookmark_urlScroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bookmark_title"
-        android:layout_marginStart="16sp"
-        android:layout_marginTop="16sp"
-        android:layout_marginEnd="16sp"
-        android:layout_marginBottom="16sp"
-        android:hint="https:google.com"
-        android:text="https://www."
-        android:textSize="18sp"
-        android:textStyle="bold">
+        android:layout_below="@+id/bookmark_title">
 
-    </EditText>
+        <EditText
+            android:id="@+id/bookmark_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16sp"
+            android:layout_marginTop="16sp"
+            android:layout_marginEnd="16sp"
+            android:layout_marginBottom="16sp"
+            android:hint="https:google.com"
+            android:inputType="textLongMessage|textAutoCorrect|textMultiLine|textUri"
+            android:singleLine="false"
+            android:text="https://www."
+            android:textSize="18sp"
+            android:textStyle="bold">
+
+        </EditText>
+    </ScrollView>
+
     <ScrollView
         android:id="@+id/des_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bookmark_url"
-        android:layout_above="@+id/savebtn"
+        android:layout_below="@+id/bookmark_urlScroll"
         android:layout_margin="8dp">
+
         <EditText
             android:id="@+id/description_EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textSize="18sp"
             android:background="@drawable/savebtn_shape"
-            android:theme="@style/ThemeEditTextLight"
-            android:hint="@string/add_account_password_notes_etc"
             android:fontFamily="@font/roboto"
-            android:text="">
+            android:hint="@string/add_account_password_notes_etc"
+            android:padding="8dp"
+            android:text=""
+            android:textSize="18sp"
+            android:theme="@style/ThemeEditTextLight">
 
         </EditText>
     </ScrollView>
 
 
-    <Button
-        android:id="@+id/updatebtn"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/updatebtn_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16sp"
-        android:text="UPDATE"
-        android:textSize="28sp"
-        android:background="@drawable/savebtn_shape"
-        android:layout_above="@+id/delete_insavebtn">
+        android:layout_marginBottom="10sp"
+        android:layout_above="@+id/delete_insavebtn_card"
+        app:cardElevation="6sp"
+        app:cardCornerRadius="20dp">
+        <Button
+            android:id="@+id/updatebtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2.6sp"
+            android:layout_marginBottom="6sp"
+            android:background="@drawable/savebtn_shape"
+            android:text="UPDATE"
+            android:textSize="28sp"
+            app:backgroundTint="@color/orange">
 
-    </Button>
-    <Button
-        android:id="@+id/delete_insavebtn"
+        </Button>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/delete_insavebtn_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_margin="16sp"
-        android:text="Delete"
-        android:textSize="28sp"
-        android:background="@drawable/savebtn_shape"
-        android:layout_alignParentBottom="true">
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10sp">
 
-    </Button>
+        <Button
+            android:id="@+id/delete_insavebtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2.6sp"
+            android:layout_marginBottom="6sp"
+            android:background="@drawable/savebtn_shape"
+            android:text="Delete"
+            android:textSize="28sp"
+            app:backgroundTint="@color/orange">
+
+        </Button>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

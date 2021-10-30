@@ -1,24 +1,21 @@
 package com.example.navigationbookmark.ViewModel
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.navigationbookmark.Database.BookmarkEntity
 import com.example.navigationbookmark.MainNavigationFragments.MainFragmentDirections
 import com.example.navigationbookmark.R
-import java.lang.System.load
 
 
 class BookmarkRecyclerViewAdapter(
@@ -38,23 +35,27 @@ class BookmarkRecyclerViewAdapter(
         Glide.with(context)
             .load("https://www.google.com/s2/favicons?sz=64&domain_url=${allData[position].url}")
             .error(allData[position].url + "/favicon.png")
+            .error(allData[position].url + "/favicon.ico")
             .placeholder(R.drawable.weblink)
             .into(holder.appIcon)
 
-        Log.i("Database", "${itemCount}")
+        Log.i("Database", "$itemCount")
 
         holder.appTitle.setOnClickListener {
             val action = MainFragmentDirections.mainFragmentToUpdateFragment(allData[position])
             holder.itemView.findNavController().navigate(action)
         }
         holder.appIcon.setOnClickListener {
-            val openUrl = Intent(Intent.ACTION_VIEW, Uri.parse(allData[position].url))
-            openUrl.data = Uri.parse(allData[position].url)
-            context.startActivity(openUrl)
+//            val openUrl = Intent(Intent.ACTION_VIEW, Uri.parse(allData[position].url))
+//            openUrl.data = Uri.parse(allData[position].url)
+//            context.startActivity(openUrl)
+            val webaction = MainFragmentDirections.mainFragmentToWebViewFragment(allData[position].url)
+            holder.itemView.findNavController().navigate(webaction)
         }
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateList(newlist: List<BookmarkEntity>) {
         allData.clear()
         allData.addAll(newlist)

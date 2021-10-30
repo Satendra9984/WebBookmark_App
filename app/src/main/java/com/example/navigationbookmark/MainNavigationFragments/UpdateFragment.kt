@@ -32,7 +32,6 @@ class UpdateFragment : Fragment() {
         view.bookmark_title.setText(args.updateBookmark.title)
         view.bookmark_url.setText(args.updateBookmark.url)
         view.description_EditText.setText(args.updateBookmark.description)
-        val id = args.updateBookmark.id
 
         // Click handler for update button
         view.updatebtn.setOnClickListener {

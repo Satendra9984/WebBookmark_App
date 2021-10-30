@@ -5,21 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainNavigationFragments.MainFragment"
-    app:background="@color/white"
-    app:backgroundTint="@color/black"
-    android:background="@color/white">
+    app:backgroundTint="@color/black">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bookmark_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="0sp"
-        android:background="@color/white"
-        android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/view_forrecycler">
+
     </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -33,10 +29,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/addbtn_symbol"
-        android:backgroundTint="#d2691e">
+        android:backgroundTint="@color/orange">
 
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
