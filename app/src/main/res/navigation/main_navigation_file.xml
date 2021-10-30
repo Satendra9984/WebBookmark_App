@@ -8,22 +8,31 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.navigationbookmark.MainNavigationFragments.MainFragment"
-        android:label="NavigationBookmark"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/mainFragment_to_saveFragment"
-            app:destination="@id/saveFragment"
-            app:popUpTo="@id/saveFragment"
-            app:popUpToInclusive="true" />
+        android:label="WebApps"
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/mainFragment_to_updateFragment"
-            app:destination="@id/updateFragment"
-            app:popUpTo="@id/updateFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/updateFragment" />
+        <action
+            android:id="@+id/mainFragment_to_saveFragment"
+            app:destination="@id/saveFragment" />
         <action
             android:id="@+id/mainFragment_to_webViewFragment"
             app:destination="@id/webViewFragment" />
-
+    </fragment>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.example.navigationbookmark.MainNavigationFragments.UpdateFragment"
+        android:label="Update"
+        tools:layout="@layout/fragment_update" >
+        <action
+            android:id="@+id/updateFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="updateBookmark"
+            app:argType="com.example.navigationbookmark.Database.BookmarkEntity" />
     </fragment>
     <fragment
         android:id="@+id/saveFragment"
@@ -35,52 +44,22 @@
             app:destination="@id/mainFragment"
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true" />
-        <deeplink
-            app:action="android.intent.action.DEFAULT"
-            app:mimeType="text/plain"
-            app:uri="www.example.com" />
-        <argument
-            android:name="urlFromWeb"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="https://www." />
-        <deepLink
-            android:id="@+id/deepLink2"
-            android:autoVerify="true"
-            app:action="ACTION_SEND"
-            app:mimeType="text/plain"
-            app:uri="https://www.bookmark.com/{urlFromWeb}" />
-    </fragment>
 
-    <fragment
-        android:id="@+id/updateFragment"
-        android:name="com.example.navigationbookmark.MainNavigationFragments.UpdateFragment"
-        android:label="Update"
-        tools:layout="@layout/fragment_update">
-        <action
-            android:id="@+id/updateFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
-            app:popUpTo="@id/mainFragment"
-            app:popUpToInclusive="true" />
-        <argument
-            android:name="updateBookmark"
-            app:argType="com.example.navigationbookmark.Database.BookmarkEntity" />
     </fragment>
     <fragment
         android:id="@+id/webViewFragment"
         android:name="com.example.navigationbookmark.MainNavigationFragments.WebViewFragment"
         android:label="WebView"
-        tools:layout="@layout/fragment_web_view" >
-
+        tools:layout="@layout/fragment_web_view">
         <action
             android:id="@+id/webViewFragment_to_mainFragment"
             app:destination="@id/mainFragment"
-            app:launchSingleTop="true"
+            app:launchSingleTop="false"
             app:popUpTo="@id/mainFragment"
-            app:popUpToInclusive="false" />
+            app:popUpToInclusive="true" />
         <argument
             android:name="url"
-            app:argType="string"
-             />
+            app:argType="string" />
     </fragment>
+
 </navigation>
