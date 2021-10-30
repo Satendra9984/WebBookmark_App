@@ -13,9 +13,11 @@ Also, nowadays we have a lot of websites to use but using browser is a two step 
 # Our idea- 
 So we decided to utilize the web versions of those apps so that our work can easily be done . So we decided to make an app that stores your passwords along with the link to the webApps .
 
-#Overview
-![ScreenShot of the interface](https://drive.google.com/file/d/1a4VkhfUNwrwWjlfVKAV_AYcAuP7Ba-5s/view?usp=sharing)
-
+# Overview
+<p float="left">
+  <img src="images/two.jpeg" width="300" /> 
+  <img src="images/one.jpeg" width="300" />
+</p>
 
 # Tools-
 1. Android studio
