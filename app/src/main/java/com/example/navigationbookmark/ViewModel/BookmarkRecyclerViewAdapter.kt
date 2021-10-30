@@ -11,11 +11,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.navigationbookmark.Database.BookmarkEntity
 import com.example.navigationbookmark.MainNavigationFragments.MainFragmentDirections
 import com.example.navigationbookmark.R
+import com.example.navigationbookmark.Repository.BookmarkDiffUtil
 
 
 class BookmarkRecyclerViewAdapter(
@@ -55,12 +57,15 @@ class BookmarkRecyclerViewAdapter(
 
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+//    @SuppressLint("NotifyDataSetChanged")
     fun updateList(newlist: List<BookmarkEntity>) {
+        val bookmarkDiffutil = BookmarkDiffUtil(allData,newlist)
+        val bookResult = DiffUtil.calculateDiff(bookmarkDiffutil)
         allData.clear()
         allData.addAll(newlist)
-        notifyDataSetChanged()
+        bookResult.dispatchUpdatesTo(this)
     }
+
 
     override fun getItemCount(): Int {
         return allData.size

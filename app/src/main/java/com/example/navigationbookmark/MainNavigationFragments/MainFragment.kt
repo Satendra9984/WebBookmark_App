@@ -29,6 +29,9 @@ class MainFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_main, container, false)
 
+        val message = arguments?.getString("url")
+        Log.i("MainFragment","$message received")
+
         // Getting recyclerView and fab for mainFragment
         bookmarkRecycler = view.findViewById(R.id.bookmark_list)
         fab = view.findViewById(R.id.fabbtn)

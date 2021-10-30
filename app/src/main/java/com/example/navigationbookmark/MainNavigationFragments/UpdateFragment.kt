@@ -1,13 +1,12 @@
 package com.example.navigationbookmark.MainNavigationFragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.navigationbookmark.Database.BookmarkEntity
@@ -32,6 +31,7 @@ class UpdateFragment : Fragment() {
         view.bookmark_title.setText(args.updateBookmark.title)
         view.bookmark_url.setText(args.updateBookmark.url)
         view.description_EditText.setText(args.updateBookmark.description)
+        args.updateBookmark.id
 
         // Click handler for update button
         view.updatebtn.setOnClickListener {
