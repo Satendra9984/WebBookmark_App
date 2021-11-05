@@ -6,4 +6,9 @@
     <string name="https_google_com">https:google.com</string>
     <string name="https_www">https://www.</string>
     <string name="title">TITLE</string>
+    <string name="search">SEARCH</string>
+    <string name="sort_by">SORT BY</string>
+    <string name="a_to_z">A to Z</string>
+    <string name="z_to_a">Z to A</string>
+    <string name="delete_all">DELETE ALL</string>
 </resources>
