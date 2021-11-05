@@ -35,6 +35,7 @@ class WebViewFragment : Fragment() {
         webView.webViewClient = WebViewClient()
 
         webView.loadUrl(args.url)
+        // ending here
         return view
     }
 
