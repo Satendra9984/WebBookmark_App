@@ -2,11 +2,11 @@ package com.example.navigationbookmark.MainNavigationFragments
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +15,7 @@ import com.example.navigationbookmark.ViewModel.BookmarkRecyclerViewAdapter
 import com.example.navigationbookmark.ViewModel.BookmarkViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private val viewModel: BookmarkViewModel by activityViewModels()
     private lateinit var adapter: BookmarkRecyclerViewAdapter
@@ -30,7 +30,10 @@ class MainFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
 
         val message = arguments?.getString("url")
-        Log.i("MainFragment","$message received")
+        Log.i("MainFragment", "$message received")
+
+        // setting menu
+        setHasOptionsMenu(true)
 
         // Getting recyclerView and fab for mainFragment
         bookmarkRecycler = view.findViewById(R.id.bookmark_list)
@@ -54,5 +57,39 @@ class MainFragment : Fragment() {
 
         return view
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.list_fragment_menu, menu)
+
+        val search:MenuItem = menu.findItem(R.id.search)
+        val searchView = search.actionView as? SearchView
+        searchView?.isSubmitButtonEnabled = true
+        searchView?.setOnQueryTextListener(this)
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null) {
+            searchDataBase(query)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        if (newText != null) {
+            searchDataBase(newText)
+        }
+        return true
+    }
+
+    private fun searchDataBase(query: String) {
+        val searchQuery: String = "%$query%"
+        viewModel.search(searchQuery).observe(this, { list ->
+            list?.let {
+                adapter.updateList(it)
+            }
+        })
+    }
+
 
 }

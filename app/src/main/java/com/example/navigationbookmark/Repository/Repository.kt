@@ -20,4 +20,12 @@ class Repository(private val dao:DatabaseDao) {
       suspend fun delete(bookmarkEntity: BookmarkEntity){
           dao.delete(bookmarkEntity)
       }
+
+      fun search(searchQuery: String):LiveData<List<BookmarkEntity>>{
+          return dao.search(searchQuery)
+      }
+
+      fun deleteAll(){
+          dao.deleteAll()
+      }
 }

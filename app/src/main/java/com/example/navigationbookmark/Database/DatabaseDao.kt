@@ -18,4 +18,10 @@ interface DatabaseDao {
 
     @Query("SELECT * FROM BOOKMARK_TABLE ORDER BY 'KEY' ASC")
     fun getAll():LiveData<List<BookmarkEntity>>
+
+    @Query("SELECT * FROM BOOKMARK_TABLE WHERE TITLES LIKE :searchQuery")
+    fun search(searchQuery:String):LiveData<List<BookmarkEntity>>
+
+    @Query("DELETE FROM BOOKMARK_TABLE")
+    fun deleteAll()
 }

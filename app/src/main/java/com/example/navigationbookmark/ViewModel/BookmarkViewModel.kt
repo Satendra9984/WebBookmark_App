@@ -41,4 +41,14 @@ class BookmarkViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
+    fun search(searchQuery: String):LiveData<List<BookmarkEntity>>{
+        return repository.search(searchQuery)
+    }
+
+    fun deleteAll(){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deleteAll()
+        }
+    }
+
 }
