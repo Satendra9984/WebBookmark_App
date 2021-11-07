@@ -23,5 +23,11 @@ interface DatabaseDao {
     fun search(searchQuery:String):LiveData<List<BookmarkEntity>>
 
     @Query("DELETE FROM BOOKMARK_TABLE")
-    fun deleteAll()
+    suspend fun deleteAll()
+
+    @Query("SELECT * FROM BOOKMARK_TABLE ORDER BY TITLES ASC")
+    fun sortByAtoZ(): LiveData<List<BookmarkEntity>>
+
+    @Query("SELECT * FROM BOOKMARK_TABLE ORDER BY TITLES DESC")
+    fun sortByZtoA(): LiveData<List<BookmarkEntity>>
 }

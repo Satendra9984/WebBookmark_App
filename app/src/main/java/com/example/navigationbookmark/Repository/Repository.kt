@@ -8,6 +8,8 @@ import com.example.navigationbookmark.Database.DatabaseDao
 class Repository(private val dao:DatabaseDao) {
 
       val allBookmark:LiveData<List<BookmarkEntity>> = dao.getAll()
+      val allBookmarkAtoZ:LiveData<List<BookmarkEntity>> = dao.sortByAtoZ()
+      val allBookmarkZtoA:LiveData<List<BookmarkEntity>> = dao.sortByZtoA()
 
       suspend fun insert(bookmarkEntity: BookmarkEntity){
           dao.insert(bookmarkEntity)
@@ -25,7 +27,15 @@ class Repository(private val dao:DatabaseDao) {
           return dao.search(searchQuery)
       }
 
-      fun deleteAll(){
+      suspend fun deleteAll(){
           dao.deleteAll()
       }
+
+//     fun sortByAtoZ():LiveData<List<BookmarkEntity>>{
+//         return dao.sortByAtoZ()
+//     }
+//
+//    fun sortByZtoA():LiveData<List<BookmarkEntity>>{
+//        return dao.sortByZtoA()
+//    }
 }

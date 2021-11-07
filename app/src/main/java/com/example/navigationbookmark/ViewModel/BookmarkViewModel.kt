@@ -20,6 +20,8 @@ class BookmarkViewModel(application: Application) : AndroidViewModel(application
     private val getDao: DatabaseDao = getInstance(application).getDao()
     private val repository: Repository = Repository(getDao)
     val allBookmark: LiveData<List<BookmarkEntity>> = repository.allBookmark
+    val allBookmarkAtoZ:LiveData<List<BookmarkEntity>> = repository.allBookmarkAtoZ
+    val allBookmarkZtoA:LiveData<List<BookmarkEntity>> = repository.allBookmarkZtoA
 
     // Always make sure inside the coroutine if it is not copied from other dao function like insert is
     // not in all update,delete functions
@@ -50,5 +52,11 @@ class BookmarkViewModel(application: Application) : AndroidViewModel(application
             repository.deleteAll()
         }
     }
-
+//    fun sortAtoZ():LiveData<List<BookmarkEntity>>{
+//        return repository.allBookmarkAtoZ
+//    }
+//
+//    fun sortZtoA():LiveData<List<BookmarkEntity>>{
+//        return repository.allBookmarkZtoA
+//    }
 }

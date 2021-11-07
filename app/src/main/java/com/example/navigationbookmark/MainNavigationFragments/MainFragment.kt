@@ -1,9 +1,15 @@
 package com.example.navigationbookmark.MainNavigationFragments
 
+import android.content.Context.WINDOW_SERVICE
+import android.content.res.Resources
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -14,6 +20,7 @@ import com.example.navigationbookmark.R
 import com.example.navigationbookmark.ViewModel.BookmarkRecyclerViewAdapter
 import com.example.navigationbookmark.ViewModel.BookmarkViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.lang.StrictMath.floorDiv
 
 class MainFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -42,8 +49,10 @@ class MainFragment : Fragment(), SearchView.OnQueryTextListener {
         // Creating a adapter
         adapter = BookmarkRecyclerViewAdapter(requireContext())
         bookmarkRecycler.adapter = adapter
-        bookmarkRecycler.layoutManager = GridLayoutManager(requireActivity(), 3)
-
+        val width:Int = bookmarkRecycler.measuredWidth
+        val spanCnt:Int = (width).floorDiv(100)
+        bookmarkRecycler.layoutManager = GridLayoutManager(requireActivity(), spanC0nt())
+        spanC0nt()
         // Observing the viewModel's allBookmarks
         viewModel.allBookmark.observe(viewLifecycleOwner, { list ->
             list?.let {
@@ -58,11 +67,19 @@ class MainFragment : Fragment(), SearchView.OnQueryTextListener {
         return view
     }
 
+    private fun spanC0nt(): Int {
+        val width = Resources.getSystem().displayMetrics.widthPixels
+        val height = Resources.getSystem().displayMetrics.heightPixels
+        val spancnt = width.floorDiv(360)
+        Log.i("Screensize","width -> $width  +  height -> $height,  spanCount-> $spancnt")
+        return spancnt
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 //        super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.list_fragment_menu, menu)
 
-        val search:MenuItem = menu.findItem(R.id.search)
+        val search: MenuItem = menu.findItem(R.id.search)
         val searchView = search.actionView as? SearchView
         searchView?.isSubmitButtonEnabled = true
         searchView?.setOnQueryTextListener(this)
@@ -89,6 +106,33 @@ class MainFragment : Fragment(), SearchView.OnQueryTextListener {
                 adapter.updateList(it)
             }
         })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId ) {
+            R.id.menu_deleteAll -> confirmRemoval()
+            R.id.AtoZ           -> viewModel.allBookmarkAtoZ.observe(this,
+                { adapter.updateList(it) })
+            R.id.ZtoA           -> viewModel.allBookmarkZtoA.observe(this,
+                { adapter.updateList(it) })
+        }
+        return super.onOptionsItemSelected(item)
+
+    }
+
+    // Show Alert Dialog Message
+    private fun confirmRemoval() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("YES") { _, _ ->
+            viewModel.deleteAll()
+            Toast.makeText(requireContext(), "All Bookmarks Deleted", Toast.LENGTH_SHORT).show()
+//            view.findNavController().navigate(R.id.)
+        }
+        builder.setNegativeButton("No") { _, _ -> }
+        builder.setTitle("Delete Everything?")
+        builder.setMessage("Are you sure you want to delete everything?")
+//        builder.setCustom
+        builder.create().show()
     }
 
 
