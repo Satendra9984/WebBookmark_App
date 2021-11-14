@@ -1,10 +1,7 @@
 # Hackathon name- HackNITR
 
-# Team members-
-1. Aditi jha- @aditi944
+# Made By->
 2. Satendra pal- @Satendra9984
-3. Faiz imam- @Faiziimam
-4. Abhiram borige- @Abhiramborige
 
 # Problem statement-  
 Quite often, we were not able to play high storage games due to the overload of necessary apps .
