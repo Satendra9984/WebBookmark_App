@@ -1,5 +1,3 @@
-# Hackathon name- HackNITR
-
 # Made By->
 2. Satendra pal- @Satendra9984
 
