@@ -36,6 +36,7 @@ class BookmarkRecyclerViewAdapter(
         holder.appTitle.text = allData[position].title
         Glide.with(context)
             .load("https://www.google.com/s2/favicons?sz=64&domain_url=${allData[position].url}")
+            .error(allData[position].url + "/favicon.io")
             .error(allData[position].url + "/favicon.png")
             .error(allData[position].url + "/favicon.ico")
             .placeholder(R.drawable.weblink)
