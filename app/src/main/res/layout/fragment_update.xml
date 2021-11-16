@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bookmark_url"
-        android:layout_above="@+id/savebtn"
+        android:layout_above="@+id/updatebtn_card"
         android:layout_margin="8dp">
 
         <EditText

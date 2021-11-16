@@ -57,13 +57,28 @@ class WebViewFragment : Fragment() {
     }
     // when browser_view of menu selected
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.browser_view){
-
-            val openUrl = Intent(Intent.ACTION_VIEW, Uri.parse(args.url))
-            openUrl.data = Uri.parse(args.url)
-            requireContext().startActivity(openUrl)
-            Log.i("webview","Url open in browser")
+        when(item.itemId ){
+            R.id.browser_view -> openUrl()
+            R.id.shareWebViewUrl -> shareUrl()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun shareUrl() {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, args.url)
+            type = "text/plain"
+        }
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
+    }
+
+    fun openUrl()
+    {
+        val openUrl = Intent(Intent.ACTION_VIEW, Uri.parse(args.url))
+        openUrl.data = Uri.parse(args.url)
+        requireContext().startActivity(openUrl)
+        Log.i("webview","Url open in browser")
     }
 }

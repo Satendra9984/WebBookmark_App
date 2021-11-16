@@ -3,14 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/browser_view"
-        android:title="@string/browser"
-        android:icon="@drawable/browser_icon"
-        app:showAsAction="always">
-
-    </item>
-    <item
-        android:id="@+id/shareWebViewUrl"
+        android:id="@+id/shareSaveFragmentUrl"
         android:title="@string/share"
         android:icon="@drawable/ic_share"
         app:showAsAction="ifRoom">
